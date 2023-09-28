@@ -6,3 +6,25 @@
 <h3>@Model["game"].PlayerName's Game:</h3>
 <h1>Puzzle @Model["puzzle"].Id</h1>
 
+<div id="puzzle" class="container row" style="margin: 5% 13%;">
+@foreach (char blank in @Model["puzzle"].Answer)
+{
+  <div class="col">
+    <h4>@blank</h4>
+  </div>
+}
+</div>
+
+<br>
+<div class="container">
+  <form>
+    <label for="guess">Guess a Letter:</label>
+    <input id="guess" name="guess" style="text">
+    <button type="submit">Enter</button>
+  </form>
+</div>
+
+<br>
+<br>
+<p><a href='/games/@Model["game"].Id'>Return to @Model["game"].PlayerName's Games</a></p>
+<p><a href='/'>Return to Home Page</a></p>
