@@ -29,5 +29,14 @@ namespace WordPuzzle.Controllers
 
       return View(game);
     }
+
+    // UPDATE PUZZLE VIEW WITH PLAYER'S GUESS
+    [HttpPost("/games/{gameId}/puzzles/{puzzleId}")]
+    public ActionResult Update(int gameId, int puzzleId, string guess)
+    {
+      Puzzle foundPuzzle = Puzzle.Find(puzzleId);
+      foundPuzzle.Guess(guess);
+      return RedirectToAction("Show", new {gameId, puzzleId});
+    }
   }
 }
