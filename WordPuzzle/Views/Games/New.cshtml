@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Start a New Game!</h1>
+<p>Enter player name here:</p>
+
+<form action="/games" method="post">
+  <label for="playerName">Enter Player Name:</label>
+  <input id="playerName" name="playerName" type="text">
+  <button type="submit">Start!</button>
+</form>
+<br>
+<br>
+<p><a href="/">Back to Home</a></p>
+<p><a href="/games">Back to Games.</a></p>

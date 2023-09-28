@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+@using WordPuzzle.Models;
+
+<h1>Current Puzzles:</h1>
+
+<ul>
+  @foreach (Puzzle puzzle in @Model["puzzles"])
+  {
+    <li><a href='/games/@Model["game"].Id/puzzles/@puzzle.Id'>Puzzle @puzzle.Id [State: @Model["game"].CheckPuzzleState(puzzle.Id)]</a></li>
+  }
+</ul>
+
+<br>
+<br>
+<p><a href='/games/@Model["game"].Id/puzzles/new'>Add a New Puzzle</a></p>
+<p><a href='/games'>Return to Game List</a></p>
+<p><a href='/'>Return to Home Page</a></p>
