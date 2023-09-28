@@ -10,6 +10,9 @@ namespace WordPuzzle.Models
     public List<char> Answer { get; set; } = new List<char>{};
     public List<char> GuessedLetters { get; set; } = new List<char>{};
 
+    private static List<Puzzle> _instances = new List<Puzzle>{};
+    public int Id { get; }
+
     public int Attempts { get; set; } = 6;
 
     public Puzzle(string chosenWord)
@@ -20,12 +23,21 @@ namespace WordPuzzle.Models
       {
         Answer.Add('-');
       }
+      _instances.Add(this);
+      Id = _instances.Count;
     }
 
+    // Overloader: no argument creates a random word for the puzzle
     public Puzzle()
     {
       Word = Words.Random();
       Letters = Word.ToCharArray();
+      foreach (char letter in Letters)
+      {
+        Answer.Add('-');
+      }
+      _instances.Add(this);
+      Id = _instances.Count;
     }
 
     public bool Guess(string userGuess)
@@ -58,6 +70,21 @@ namespace WordPuzzle.Models
           Answer[index] = letter;
         }
       }
+    }
+
+    public static void ClearAll()
+    {
+      _instances.Clear();
+    }
+
+    public static List<Puzzle> GetAll()
+    {
+      return _instances;
+    }
+
+    public static Puzzle Find(int searchId)
+    {
+      return _instances[searchId - 1];
     }
   }
 }
