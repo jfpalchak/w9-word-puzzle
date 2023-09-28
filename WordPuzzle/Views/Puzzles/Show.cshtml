@@ -17,7 +17,7 @@
 
 <br>
 <div class="container">
-  <form>
+  <form action='/games/@Model["game"].Id/puzzles/@Model["puzzle"].Id' method="post">
     <label for="guess">Guess a Letter:</label>
     <input id="guess" name="guess" style="text">
     <button type="submit">Enter</button>
