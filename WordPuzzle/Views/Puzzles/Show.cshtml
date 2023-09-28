@@ -5,23 +5,34 @@
 
 <h3>@Model["game"].PlayerName's Game:</h3>
 <h1>Puzzle @Model["puzzle"].Id</h1>
+<h4>Attempts Left: @Model["puzzle"].Attempts</h4>
 
 <div id="puzzle" class="container row" style="margin: 5% 13%;">
-@foreach (char blank in @Model["puzzle"].Answer)
-{
-  <div class="col">
-    <h4>@blank</h4>
-  </div>
-}
+  @foreach (char blank in @Model["puzzle"].Answer)
+  {
+    <div class="col">
+      <h4>@blank</h4>
+    </div>
+  }
 </div>
 
 <br>
-<div class="container">
+<div class="player-guess container">
   <form action='/games/@Model["game"].Id/puzzles/@Model["puzzle"].Id' method="post">
     <label for="guess">Guess a Letter:</label>
     <input id="guess" name="guess" style="text">
     <button type="submit">Enter</button>
   </form>
+</div>
+<br>
+<div class="bad-guess container">
+  <p>Bad Guesses:</p>
+  <p>
+    @foreach (char letter in @Model["puzzle"].GuessedLetters)
+    {
+      <span cass="red">@letter</span>
+    }
+  </p>
 </div>
 
 <br>
