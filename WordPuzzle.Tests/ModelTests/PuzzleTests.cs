@@ -7,8 +7,13 @@ using WordPuzzle.Models;
 namespace WordPuzzle.Tests
 {
   [TestClass]
-  public class PuzzleTests
+  public class PuzzleTests : IDisposable
   {
+    public void Dispose()
+    {
+      Puzzle.ClearAll();
+    }
+
     [TestMethod]
     public void PuzzleConstructor_CreatesInstanceOfPuzzleGivenAWord_Puzzle()
     {
@@ -108,6 +113,39 @@ namespace WordPuzzle.Tests
       List<char> result = newPuzzle.Answer;
 
       CollectionAssert.AreEqual(blankList, result);
+    }
+
+    [TestMethod]
+    public void GetAll_ReturnsEmptyList_PuzzleList()
+    {
+      List<Puzzle> newList = new List<Puzzle> {};
+
+      List<Puzzle> result = Puzzle.GetAll();
+
+      CollectionAssert.AreEqual(newList, result);
+    }
+
+    [TestMethod]
+    public void GetAll_ReturnsListOfInstantiatedPuzzles_PuzzleList()
+    {
+      Puzzle newPuzzle1 = new Puzzle("word");
+      Puzzle newPuzzle2 = new Puzzle("other");
+
+      List<Puzzle> newList = new List<Puzzle> { newPuzzle1, newPuzzle2 };
+
+      List<Puzzle> result = Puzzle.GetAll();
+
+      CollectionAssert.AreEqual(newList, result);
+    }
+
+    [TestMethod]
+    public void GetId_PuzzleInstantiatedWithAnIdAndGetterReturns_Int()
+    {
+      Puzzle newPuzzle = new Puzzle();
+
+      int result = newPuzzle.Id;
+
+      Assert.AreEqual(1, result);
     }
   }
 }
