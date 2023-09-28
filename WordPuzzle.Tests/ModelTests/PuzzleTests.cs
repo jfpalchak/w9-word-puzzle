@@ -57,6 +57,17 @@ namespace WordPuzzle.Tests
     }
 
     [TestMethod]
+    public void GetAnswer_ReturnsListOfBlankLettersPlayerMustGuess_List()
+    {
+      Puzzle newPuzzle = new Puzzle("word");
+      List<char> blankList = new List<char> { '-', '-', '-', '-'};
+
+      List<char> result = newPuzzle.Answer;
+
+      CollectionAssert.AreEqual(blankList, result);
+    }
+
+    [TestMethod]
     public void Guess_ReturnsFalseIfLetterIsNotInTheWord_Bool()
     {
       Puzzle newPuzzle = new Puzzle("word");
@@ -66,7 +77,8 @@ namespace WordPuzzle.Tests
       Assert.AreEqual(false, result);
     }
 
-    public void Guess_AddsLetterToListOfGuessIfLetterIsNotInWord_Bool()
+    [TestMethod]
+    public void Guess_AddsLetterToListOfGuessesIfLetterIsNotInWord_Bool()
     {
       Puzzle newPuzzle = new Puzzle("word");
       newPuzzle.Guess("i");
@@ -77,5 +89,25 @@ namespace WordPuzzle.Tests
       CollectionAssert.AreEqual(guessList, result);
     }
 
+    [TestMethod]
+    public void Guess_ReturnsTrueIfLetterIsInTheWord_Bool()
+    {
+      Puzzle newPuzzle = new Puzzle("word");
+
+      bool result = newPuzzle.Guess("w");
+
+      Assert.AreEqual(true, result);
+    }
+
+    [TestMethod]
+    public void Guess_ReplacesCorrespondingBlankWithAppropriateLetterIfGuessIsCorrect_Bool()
+    {
+      Puzzle newPuzzle = new Puzzle("word");
+      newPuzzle.Guess("w");
+      List<char> blankList = new List<char> { 'w', '-', '-', '-'};
+      List<char> result = newPuzzle.Answer;
+
+      CollectionAssert.AreEqual(blankList, result);
+    }
   }
 }
