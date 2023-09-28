@@ -40,5 +40,21 @@ namespace WordPuzzle.Models
     {
       _instances.Clear();
     }
+
+    public string CheckState()
+    {
+      if (Puzzle.Attempts == 0)
+      {
+        return "LOST";
+      }
+      else if (!String.Join("", Puzzle.Answer).Contains('-'))
+      {
+        return "WON";
+      }
+      else
+      {
+        return "ONGOING";
+      }
+    }
   }
 }
