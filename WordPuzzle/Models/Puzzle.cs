@@ -73,7 +73,7 @@ namespace WordPuzzle.Models
 
     public string CheckPuzzleState()
     {
-      if (Attempts == 0)
+      if (Attempts <= 0)
       {
         return "LOST";
       }

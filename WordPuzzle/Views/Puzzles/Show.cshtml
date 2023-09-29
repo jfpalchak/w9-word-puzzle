@@ -4,7 +4,7 @@
 @using WordPuzzle.Models
 
 <h3>@Model["game"].PlayerName's Game:</h3>
-<h1>Puzzle @Model["puzzle"].Id</h1>
+<h2>Puzzle @Model["puzzle"].Id</h2>
 <h4>Attempts Left: @Model["puzzle"].Attempts</h4>
 
 <div id="puzzle" class="container row" style="margin: 5% 13%;">
@@ -26,11 +26,22 @@
 
 <br>
 <div class="player-guess container">
-  <form action='/games/@Model["game"].Id/puzzles/@Model["puzzle"].Id' method="post">
-    <label for="guess">Guess a Letter:</label>
-    <input id="guess" name="guess" style="text">
-    <button type="submit">Enter</button>
-  </form>
+  @if (@Model["puzzle"].CheckPuzzleState() == "ONGOING")
+  {
+    <form action='/games/@Model["game"].Id/puzzles/@Model["puzzle"].Id' method="post">
+      <label for="guess">Guess a Letter:</label>
+      <input id="guess" name="guess" style="text">
+      <button type="submit">Enter</button>
+    </form>
+  }
+  @if (@Model["puzzle"].CheckPuzzleState() == "LOST")
+  {
+    <h3><a href='/games/@Model["game"].Id'>Game Over!</a></h3>
+  }
+  @if (@Model["puzzle"].CheckPuzzleState() == "WON")
+  {
+    <h3><a href='/games/@Model["game"].Id'>You Won!</a></h3>
+  }
 </div>
 <br>
 <div class="bad-guess container">
