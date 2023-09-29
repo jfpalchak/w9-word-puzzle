@@ -62,12 +62,11 @@ namespace WordPuzzle.Models
       // Loop through each letter in the word.
       // If one or more letters match the player's guess, 
       // replace the corresponding Blank ('-') with the appropriate letter.
-      foreach(char letter in Letters)
+      for (int i=0; i < Letters.Length; i++)
       {
-        if (letter == guess)
+        if (guess == Letters[i])
         {
-          int index = Array.IndexOf(Letters, letter);
-          Answer[index] = letter;
+          Answer[i] = guess;
         }
       }
     }

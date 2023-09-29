@@ -68,13 +68,12 @@ namespace WordPuzzle.Controllers
       return View("Show", model);
     }
 
+    // CREATE RANDOM PUZZLE
     [HttpPost("/games/{gameId}/puzzles/create")]
     public ActionResult Create(int id)
     {
       Game foundGame = Game.Find(id);
-      // Puzzle newPuzzle = new Puzzle();
       foundGame.AddPuzzle(new Puzzle());
-
       return RedirectToAction("Show", new { gameId = id });
     }
 
