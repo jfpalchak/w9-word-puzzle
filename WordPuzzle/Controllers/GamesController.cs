@@ -32,7 +32,6 @@ namespace WordPuzzle.Controllers
     }
 
     // SHOW SPECIFIC GAME AND ALL THE PUZZLES THAT HAVE BEEN STARTED
-    // ! what's happening here
     [HttpGet("/games/{gameId}")]
     public ActionResult Show(int gameId)
     {
@@ -67,6 +66,16 @@ namespace WordPuzzle.Controllers
       model.Add("puzzles", gamePuzzles);
 
       return View("Show", model);
+    }
+
+    [HttpPost("/games/{gameId}/puzzles/create")]
+    public ActionResult Create(int id)
+    {
+      Game foundGame = Game.Find(id);
+      // Puzzle newPuzzle = new Puzzle();
+      foundGame.AddPuzzle(new Puzzle());
+
+      return RedirectToAction("Show", new { gameId = id });
     }
 
   }

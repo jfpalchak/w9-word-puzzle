@@ -14,6 +14,11 @@
 
 <br>
 <br>
-<p><a href='/games/@Model["game"].Id/puzzles/new'>Add a New Puzzle</a></p>
+<form action='/games/@Model["game"].Id/puzzles/create' method="post">
+  <input name="id" type="hidden" value='@Model["game"].Id'>
+  <button type="submit">Add a New Puzzle</button>
+</form>
+<br>
+<p><a href='/games/@Model["game"].Id/puzzles/new'>Create Custom Puzzle</a></p>
 <p><a href='/games'>Return to Game List</a></p>
 <p><a href='/'>Return to Home Page</a></p>
