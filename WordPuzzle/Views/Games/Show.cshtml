@@ -8,7 +8,7 @@
 <ul>
   @foreach (Puzzle puzzle in @Model["puzzles"])
   {
-    <li><a href='/games/@Model["game"].Id/puzzles/@puzzle.Id'>Puzzle @puzzle.Id [State: @Model["game"].CheckPuzzleState(puzzle.Id)]</a></li>
+    <li><a href='/games/@Model["game"].Id/puzzles/@puzzle.Id'>Puzzle @puzzle.Id [State: @puzzle.CheckPuzzleState()]</a></li>
   }
 </ul>
 

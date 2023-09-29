@@ -72,6 +72,22 @@ namespace WordPuzzle.Models
       }
     }
 
+    public string CheckPuzzleState()
+    {
+      if (Attempts == 0)
+      {
+        return "LOST";
+      }
+      else if (!String.Join("", Answer).Contains('-'))
+      {
+        return "WON";
+      }
+      else
+      {
+        return "ONGOING";
+      }
+    }
+
     public static void ClearAll()
     {
       _instances.Clear();

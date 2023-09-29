@@ -49,22 +49,6 @@ namespace WordPuzzle.Models
       _instances.Clear();
     }
 
-    public string CheckPuzzleState(int puzzleId)
-    {
-      if (Puzzles[puzzleId-1].Attempts == 0)
-      {
-        return "LOST";
-      }
-      else if (!String.Join("", Puzzles[puzzleId-1].Answer).Contains('-'))
-      {
-        return "WON";
-      }
-      else
-      {
-        return "ONGOING";
-      }
-    }
-
     public void AddPuzzle(Puzzle newPuzzle)
     {
       Puzzles.Add(newPuzzle);
