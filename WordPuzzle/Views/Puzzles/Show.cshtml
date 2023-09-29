@@ -30,7 +30,7 @@
   {
     <form action='/games/@Model["game"].Id/puzzles/@Model["puzzle"].Id' method="post">
       <label for="guess">Guess a Letter:</label>
-      <input id="guess" name="guess" style="text">
+      <input id="guess" name="guess" style="text" required>
       <button type="submit">Enter</button>
     </form>
   }
@@ -49,7 +49,7 @@
   <p>
     @foreach (char letter in @Model["puzzle"].GuessedLetters)
     {
-      <span cass="red">@letter</span>
+      <span style="color:red">@letter</span>
     }
   </p>
 </div>
