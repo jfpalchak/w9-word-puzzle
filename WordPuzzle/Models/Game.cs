@@ -18,7 +18,7 @@ namespace WordPuzzle.Models
       Id = _instances.Count;
 
       Puzzles = new List<Puzzle> {new Puzzle()};
-      
+            
       Type = "Random";
       PlayerName = playerName;
     }
@@ -63,6 +63,11 @@ namespace WordPuzzle.Models
       {
         return "ONGOING";
       }
+    }
+
+    public void AddPuzzle(Puzzle newPuzzle)
+    {
+      Puzzles.Add(newPuzzle);
     }
   }
 }

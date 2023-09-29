@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+@using WordPuzzle.Models
+
+<h1>Add a New Word Puzzle to @Model.PlayerName's Game!</h1>
+<p>Type 'random' for a random word puzzle, otherwise type in a word you'd like a player to solve!</p>
+
+<form action="/games/@Model.Id/puzzles" method="post">
+  <input id="gameId" name="gameId" type="hidden" value="@Model.Id">
+  <label for="chosenWord">Enter a Word:</label>
+  <input id="chosenWord" name="chosenWord" type="text">
+  <button type="submit">Create</button>
+</form>

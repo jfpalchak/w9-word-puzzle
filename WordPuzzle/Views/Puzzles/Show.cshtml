@@ -8,6 +8,14 @@
 <h4>Attempts Left: @Model["puzzle"].Attempts</h4>
 
 <div id="puzzle" class="container row" style="margin: 5% 13%;">
+  @* @{
+    string gameState = Model["game"].CheckPuzzleState(@Model["puzzle"].Id);
+    switch(gameState)
+    {
+
+    }
+  } *@
+
   @foreach (char blank in @Model["puzzle"].Answer)
   {
     <div class="col">

@@ -27,15 +27,16 @@ namespace WordPuzzle.Controllers
     public ActionResult Create(string playerName)
     {
       Game newGame = new Game(playerName);
+
       return RedirectToAction("Index");
     }
 
     // SHOW SPECIFIC GAME AND ALL THE PUZZLES THAT HAVE BEEN STARTED
-    [HttpGet("/games/{id}")]
-    public ActionResult Show(int id)
+    [HttpGet("/games/{gameId}")]
+    public ActionResult Show(int gameId)
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
-      Game foundGame = Game.Find(id);
+      Game foundGame = Game.Find(gameId);
       List<Puzzle> gamePuzzles = foundGame.Puzzles;
       
       model.Add("game", foundGame);
@@ -43,5 +44,29 @@ namespace WordPuzzle.Controllers
 
       return View(model);
     }
+
+    [HttpPost("/games/{gameId}/puzzles")]
+    public ActionResult Create(int gameId, string chosenWord)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Game foundGame = Game.Find(gameId);
+      Puzzle newPuzzle;
+      if (chosenWord.ToLower() != "random")
+      {
+        newPuzzle = new Puzzle(chosenWord);
+      }
+      else
+      {
+        newPuzzle = new Puzzle();
+      }
+      foundGame.AddPuzzle(newPuzzle);
+      List<Puzzle> gamePuzzles = foundGame.Puzzles;
+
+      model.Add("game", foundGame);
+      model.Add("puzzles", gamePuzzles);
+
+      return View("Show", model);
+    }
+
   }
 }

@@ -11,7 +11,7 @@ namespace WordPuzzle.Models
     public List<char> GuessedLetters { get; set; } = new List<char>{};
 
     private static List<Puzzle> _instances = new List<Puzzle>{};
-    public int Id { get; }
+    public int Id { get; set; }
 
     public int Attempts { get; set; } = 6;
 
@@ -84,7 +84,7 @@ namespace WordPuzzle.Models
 
     public static Puzzle Find(int searchId)
     {
-      return _instances[searchId - 1];
+      return _instances[searchId-1];
     }
   }
 }

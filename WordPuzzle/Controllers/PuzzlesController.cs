@@ -7,6 +7,15 @@ namespace WordPuzzle.Controllers
 {
   public class PuzzlesController : Controller
   {
+    // SHOW FORM FOR NEW PUZZLE
+    // (The Route to create will be in Games Controller, since adding a new puzzle modifies a Game)
+    [HttpGet("/games/{gameId}/puzzles/new")]
+    public ActionResult New(int gameId)
+    {
+      Game game = Game.Find(gameId);
+      return View(game);
+    }
+
     [HttpGet("/games/{gameId}/puzzles/{puzzleId}")]
     public ActionResult Show(int gameId, int puzzleId)
     {
@@ -18,16 +27,6 @@ namespace WordPuzzle.Controllers
       model.Add("puzzle", foundPuzzle);
 
       return View(model);
-    }
-
-    // SHOW FORM FOR NEW PUZZLE
-    // (The Route to create will be in Games Controller, since adding a new puzzle modifies a Game)
-    [HttpPost("/games/{gameId}/puzzles/new")]
-    public ActionResult New(int gameId)
-    {
-      Game game = Game.Find(gameId);
-
-      return View(game);
     }
 
     // UPDATE PUZZLE VIEW WITH PLAYER'S GUESS

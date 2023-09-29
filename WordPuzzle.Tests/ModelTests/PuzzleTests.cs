@@ -142,10 +142,18 @@ namespace WordPuzzle.Tests
     public void GetId_PuzzleInstantiatedWithAnIdAndGetterReturns_Int()
     {
       Puzzle newPuzzle = new Puzzle();
+      Puzzle newPuzzle2 = new Puzzle();
 
       int result = newPuzzle.Id;
 
       Assert.AreEqual(1, result);
+      Assert.AreEqual(2, newPuzzle2.Id);
     }
+
+    // [TestMethod]
+    // public void Find_ReturnsCorrectPuzzle_Puzzle()
+    // {
+
+    // }
   }
 }
