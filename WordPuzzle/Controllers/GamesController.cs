@@ -32,6 +32,7 @@ namespace WordPuzzle.Controllers
     }
 
     // SHOW SPECIFIC GAME AND ALL THE PUZZLES THAT HAVE BEEN STARTED
+    // ! what's happening here
     [HttpGet("/games/{gameId}")]
     public ActionResult Show(int gameId)
     {
